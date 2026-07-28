@@ -1,0 +1,111 @@
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import compression from "compression";
+import cookieParser from "cookie-parser";
+import rateLimit from "express-rate-limit";
+
+import routes from "./routes/index.js";
+
+import requestLogger from "./middleware/requestLogger.middleware.js";
+import errorMiddleware from "./middleware/error.middleware.js";
+
+const app = express();
+
+/* ==========================================
+   Security Middleware
+========================================== */
+
+app.use(helmet());
+
+/* ==========================================
+   CORS
+========================================== */
+
+app.use(
+    cors({
+        origin: process.env.CLIENT_URL,
+        credentials: true,
+    })
+);
+
+/* ==========================================
+   Compression
+========================================== */
+
+app.use(compression());
+
+//   Body Parsers
+
+app.use(
+    express.json({
+        limit: "10mb",
+    })
+);
+
+app.use(
+    express.urlencoded({
+        extended: true,
+        limit: "10mb",
+    })
+);
+
+app.use(cookieParser());
+
+
+//   Rate Limiter
+
+const limiter = rateLimit({
+
+    windowMs: 15 * 60 * 1000,
+
+    max: 100,
+
+    standardHeaders: true,
+
+    legacyHeaders: false,
+
+    message: {
+
+        success: false,
+
+        message:
+            "Too many requests. Please try again later.",
+
+    },
+
+});
+
+app.use(limiter);
+
+
+//   Request Logger
+
+app.use(requestLogger);
+
+//   API Routes
+
+app.use("/api/v1", routes);
+
+
+  // 404 Handler
+
+app.use((req, res) => {
+
+    return res.status(404).json({
+
+        success: false,
+
+        statusCode: 404,
+
+        message: "Route not found.",
+
+    });
+
+});
+
+//   Global Error Handler
+
+app.use(errorMiddleware);
+
+export default app;
