@@ -1,0 +1,174 @@
+/* APP/client/src/components/services/NeedsSelector.css */
+
+.needs-selector {
+    padding: var(--space-24) 0;
+    background: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.needs-selector__layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+.needs-selector__goals {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.goal-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-bg-body);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 100%;
+}
+
+.goal-card:hover {
+    border-color: var(--color-border-hover);
+    background: rgba(99, 102, 241, 0.04);
+}
+
+.goal-card--selected {
+    border-color: var(--color-primary-light);
+    background: rgba(99, 102, 241, 0.12);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.goal-card__check {
+    font-size: 1.25rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.goal-check--idle {
+    color: var(--color-text-tertiary);
+}
+
+.goal-check--active {
+    color: var(--color-accent);
+}
+
+.goal-card__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.goal-card__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+.goal-card__desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-top: 2px;
+}
+
+/* Recommendation Panel */
+.needs-selector__recommendation {
+    position: sticky;
+    top: 140px;
+}
+
+.recommendation-card {
+    padding: var(--space-8);
+    background: var(--color-bg-body);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.recommendation-card__tag {
+    font-size: 0.68rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: var(--space-2);
+}
+
+.recommendation-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.recommendation-card__desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+.recommendation-card__divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: var(--space-6) 0;
+}
+
+.recommendation-card__caps-label {
+    font-size: 0.68rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+    display: block;
+    margin-bottom: var(--space-4);
+}
+
+.recommendation-card__caps-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+}
+
+.recommendation-chip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.recommendation-chip__icon {
+    color: var(--color-accent);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 992px) {
+    .needs-selector__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .needs-selector__recommendation {
+        position: static;
+    }
+}
+
+@media (max-width: 576px) {
+    .goal-card {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .recommendation-card {
+        padding: var(--space-5) var(--space-4);
+    }
+}

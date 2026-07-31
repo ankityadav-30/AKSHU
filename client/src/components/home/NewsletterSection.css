@@ -1,0 +1,116 @@
+/* APP/client/src/components/home/NewsletterSection.css */
+
+.newsletter-section {
+    padding: var(--space-16) 0 var(--space-20);
+    background: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.newsletter-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    padding: var(--space-10);
+    background: var(--color-bg-body);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+}
+
+.newsletter-card__title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-3);
+}
+
+.newsletter-card__desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+.newsletter-card__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.newsletter-card__input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.newsletter-card__mail-icon {
+    position: absolute;
+    left: 16px;
+    color: var(--color-text-tertiary);
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+.newsletter-card__input {
+    width: 100%;
+    padding: 0.9rem 1rem 0.9rem 3rem;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.newsletter-card__input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.newsletter-card__btn {
+    position: absolute;
+    right: 5px;
+    padding: 0.65rem 1.4rem;
+}
+
+.newsletter-card__msg {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    margin-top: var(--space-1);
+}
+
+.newsletter-card__msg--success {
+    color: var(--color-success);
+}
+
+.newsletter-card__msg--error {
+    color: var(--color-danger);
+}
+
+@media (max-width: 992px) {
+    .newsletter-card {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+        padding: var(--space-8);
+    }
+}
+
+@media (max-width: 576px) {
+    .newsletter-card__input-group {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .newsletter-card__input {
+        padding-right: 1rem;
+    }
+
+    .newsletter-card__btn {
+        position: static;
+        width: 100%;
+    }
+}

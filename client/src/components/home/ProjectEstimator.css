@@ -1,0 +1,314 @@
+/* APP/client/src/components/home/ProjectEstimator.css */
+
+.estimator-section {
+    padding: var(--space-24) 0;
+    background: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.estimator-card {
+    background: var(--color-bg-body);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Stepper Progress Bar */
+.estimator-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+    gap: var(--space-2);
+}
+
+.estimator-progress__step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity var(--transition-fast);
+}
+
+.estimator-progress__step--active {
+    opacity: 1;
+}
+
+.estimator-progress__step--completed {
+    opacity: 0.85;
+}
+
+.estimator-progress__circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-secondary);
+}
+
+.estimator-progress__step--active .estimator-progress__circle {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+.estimator-progress__step--completed .estimator-progress__circle {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--color-success);
+    color: var(--color-success);
+}
+
+.estimator-progress__label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+/* Body Step Layout */
+.estimator-body {
+    min-height: 320px;
+}
+
+.estimator-step__question {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-6);
+}
+
+.estimator-step__header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+}
+
+.btn-text {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Grids */
+.estimator-grid {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.estimator-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.estimator-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Option Cards (Buttons) */
+.option-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 100%;
+}
+
+.option-card:hover {
+    border-color: var(--color-border-hover);
+    background: rgba(99, 102, 241, 0.04);
+}
+
+.option-card--selected {
+    border-color: var(--color-primary-light);
+    background: rgba(99, 102, 241, 0.12);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.option-card__icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.option-card__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-card__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.option-card__desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Chip Cards (Multi-select) */
+.chip-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.chip-card:hover {
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+}
+
+.chip-card--selected {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: var(--color-primary-light);
+    color: var(--color-white);
+}
+
+.chip-card__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.chip-card--selected .chip-card__check {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Controls */
+.estimator-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+}
+
+/* Result Card */
+.estimator-result {
+    text-align: center;
+    padding: var(--space-6) 0;
+}
+
+.estimator-result__label {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+}
+
+.estimator-result__price {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: var(--space-6);
+}
+
+.estimator-result__summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-6);
+    text-align: left;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-item__key {
+    font-size: 0.7rem;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+}
+
+.summary-item__val {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-top: 2px;
+}
+
+.estimator-result__disclaimer {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    line-height: var(--line-height-relaxed);
+    max-width: 620px;
+    margin: 0 auto var(--space-8);
+}
+
+.estimator-result__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.estimator-result__secondary-btns {
+    display: flex;
+    gap: var(--space-3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .estimator-grid--2,
+    .estimator-grid--3 {
+        grid-template-columns: 1fr;
+    }
+
+    .estimator-progress__label {
+        display: none;
+    }
+
+    .estimator-card {
+        padding: var(--space-6);
+    }
+}

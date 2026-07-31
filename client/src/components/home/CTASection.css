@@ -1,0 +1,58 @@
+/* APP/client/src/components/home/CTASection.css */
+
+.cta-section {
+    padding: var(--space-20) 0;
+    background: var(--color-bg-body);
+}
+
+.cta-panel {
+    position: relative;
+    padding: var(--space-20) var(--space-8);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.cta-panel__mesh {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(99, 102, 241, 0.25) 0%, rgba(34, 211, 238, 0.1) 40%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.cta-panel__content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.cta-panel__title {
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-4);
+}
+
+.cta-panel__subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+}
+
+.cta-panel__actions {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 576px) {
+    .cta-panel {
+        padding: var(--space-12) var(--space-4);
+    }
+}
