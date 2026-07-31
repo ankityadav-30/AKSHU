@@ -17,8 +17,8 @@ const getDashboardSummary = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    summary,
-                    "Dashboard summary retrieved successfully."
+                    "Dashboard summary retrieved successfully.",
+                    summary
                 )
             );
     }
@@ -39,8 +39,8 @@ const getDashboardStatistics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    statistics,
-                    "Dashboard statistics retrieved successfully."
+                    "Dashboard statistics retrieved successfully.",
+                    statistics
                 )
             );
     }
@@ -66,8 +66,8 @@ const getRecentActivity = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    activity,
-                    "Recent activity retrieved successfully."
+                    "Recent activity retrieved successfully.",
+                    activity
                 )
             );
     }
@@ -93,8 +93,8 @@ const getDashboard = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    dashboard,
-                    "Dashboard data retrieved successfully."
+                    "Dashboard data retrieved successfully.",
+                    dashboard
                 )
             );
     }

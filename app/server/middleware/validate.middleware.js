@@ -6,12 +6,17 @@ const validate = (schema, source = "body") => {
         try {
             const validatedData = await schema.parseAsync(req[source]);
 
-            req[source] = validatedData;
+            if (source === "query") {
+                Object.assign(req.query, validatedData);
+            } else {
+                req[source] = validatedData;
+            }
 
             next();
         } catch (error) {
             if (error instanceof ZodError) {
-                const errors = error.errors.map((item) => ({
+                const issues = error.issues || error.errors || [];
+                const errors = issues.map((item) => ({
                     field: item.path.join("."),
                     message: item.message,
                 }));

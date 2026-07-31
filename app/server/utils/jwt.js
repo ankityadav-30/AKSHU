@@ -7,42 +7,33 @@ import env from "../config/env.js";
 export const generateAccessToken = (payload) => {
     return jwt.sign(
         payload,
-        env.JWT_SECRET,
+        env.jwt.secret,
         {
-            expiresIn: "15m",
+            expiresIn: env.jwt.expiresIn,
         }
     );
 };
 
-/**
- * Generate Refresh Token
- */
 export const generateRefreshToken = (payload) => {
     return jwt.sign(
         payload,
-        env.JWT_SECRET,
+        env.jwt.refreshSecret,
         {
-            expiresIn: "7d",
+            expiresIn: env.jwt.refreshExpiresIn,
         }
     );
 };
 
-/**
- * Verify Access Token
- */
 export const verifyAccessToken = (token) => {
     return jwt.verify(
         token,
-        env.JWT_SECRET
+        env.jwt.secret
     );
 };
 
-/**
- * Verify Refresh Token
- */
 export const verifyRefreshToken = (token) => {
     return jwt.verify(
         token,
-        env.JWT_SECRET
+        env.jwt.refreshSecret
     );
 };

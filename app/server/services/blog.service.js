@@ -1,3 +1,4 @@
+import slugify from "slugify";
 import ApiError from "../utils/ApiError.js";
 import blogRepository from "../repositories/blog.repository.js";
 
@@ -25,9 +26,14 @@ class BlogService {
      */
     async createBlog(data, userId) {
 
+        const slug = data.slug || slugify(data.title, {
+            lower: true,
+            strict: true,
+        });
+
         const existingBlog =
             await blogRepository.findBySlug(
-                data.slug
+                slug
             );
 
         if (existingBlog) {
@@ -42,6 +48,8 @@ class BlogService {
         return blogRepository.create({
 
             ...data,
+
+            slug,
 
             readingTime:
                 this.calculateReadingTime(

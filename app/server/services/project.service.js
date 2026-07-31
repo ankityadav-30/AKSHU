@@ -72,7 +72,7 @@ class ProjectService {
 
         }
 
-        return projectRepository.update(id, {
+        return projectRepository.updateById(id, {
             ...data,
             updatedBy: userId,
         });
@@ -91,7 +91,7 @@ class ProjectService {
             );
         }
 
-        return projectRepository.update(id, {
+        return projectRepository.updateById(id, {
             status: "PUBLISHED",
             publishedAt: new Date(),
             updatedBy: userId,
@@ -111,7 +111,7 @@ class ProjectService {
             );
         }
 
-        return projectRepository.update(id, {
+        return projectRepository.updateById(id, {
             status: "ARCHIVED",
             updatedBy: userId,
         });
@@ -130,7 +130,7 @@ class ProjectService {
             );
         }
 
-        await projectRepository.delete(id);
+        await projectRepository.deleteById(id);
 
     }
 

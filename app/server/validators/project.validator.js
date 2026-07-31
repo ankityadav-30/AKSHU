@@ -34,7 +34,7 @@ export const createProjectSchema = z.object({
         .min(3)
         .max(150),
 
-    slug: slugSchema,
+    slug: slugSchema.optional(),
 
     shortDescription: z
         .string()

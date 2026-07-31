@@ -26,8 +26,8 @@ const subscribe = asyncHandler(async (req, res) => {
         .json(
             new ApiResponse(
                 201,
-                subscriber,
-                "Successfully subscribed to the newsletter."
+                "Successfully subscribed to the newsletter.",
+                subscriber
             )
         );
 });
@@ -47,8 +47,8 @@ const unsubscribe = asyncHandler(async (req, res) => {
         .json(
             new ApiResponse(
                 200,
-                subscriber,
-                "Successfully unsubscribed from the newsletter."
+                "Successfully unsubscribed from the newsletter.",
+                subscriber
             )
         );
 });
@@ -71,8 +71,8 @@ const unsubscribeById = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    subscriber,
-                    "Subscriber unsubscribed successfully."
+                    "Subscriber unsubscribed successfully.",
+                    subscriber
                 )
             );
     }
@@ -94,8 +94,8 @@ const resubscribe = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    subscriber,
-                    "Subscriber reactivated successfully."
+                    "Subscriber reactivated successfully.",
+                    subscriber
                 )
             );
     }
@@ -119,8 +119,8 @@ const getSubscriberById = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    subscriber,
-                    "Subscriber retrieved successfully."
+                    "Subscriber retrieved successfully.",
+                    subscriber
                 )
             );
     }
@@ -172,8 +172,8 @@ const getSubscribers = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    subscribers,
-                    "Newsletter subscribers retrieved successfully."
+                    "Newsletter subscribers retrieved successfully.",
+                    subscribers
                 )
             );
     }
@@ -193,8 +193,8 @@ const getSubscribed = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    subscribers,
-                    "Active newsletter subscribers retrieved successfully."
+                    "Active newsletter subscribers retrieved successfully.",
+                    subscribers
                 )
             );
     }
@@ -214,8 +214,8 @@ const getUnsubscribed = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    subscribers,
-                    "Unsubscribed newsletter subscribers retrieved successfully."
+                    "Unsubscribed newsletter subscribers retrieved successfully.",
+                    subscribers
                 )
             );
     }
@@ -235,8 +235,8 @@ const getStatistics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    statistics,
-                    "Newsletter statistics retrieved successfully."
+                    "Newsletter statistics retrieved successfully.",
+                    statistics
                 )
             );
     }
@@ -260,8 +260,8 @@ const deleteSubscriber = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    subscriber,
-                    "Newsletter subscriber deleted successfully."
+                    "Newsletter subscriber deleted successfully.",
+                    subscriber
                 )
             );
     }

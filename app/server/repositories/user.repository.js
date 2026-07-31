@@ -17,6 +17,24 @@ class UserRepository extends BaseRepository {
     }
 
     /**
+     * Find user by email with password included
+     */
+    async findByEmailWithPassword(email) {
+        return this.model
+            .findOne({
+                email: email.toLowerCase(),
+            })
+            .select("+password");
+    }
+
+    /**
+     * Find user by ID with password included
+     */
+    async findByIdWithPassword(id) {
+        return this.model.findById(id).select("+password");
+    }
+
+    /**
      * Find public user by email
      */
     async findPublicByEmail(email) {

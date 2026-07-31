@@ -68,7 +68,7 @@ class ProfileService {
         } = data;
 
         const user =
-            await userRepository.findById(userId);
+            await userRepository.findByIdWithPassword(userId);
 
         if (!user) {
             throw new ApiError(

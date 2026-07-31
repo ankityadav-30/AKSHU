@@ -24,8 +24,8 @@ const uploadSingle = asyncHandler(
             .json(
                 new ApiResponse(
                     201,
-                    result,
-                    "File uploaded successfully."
+                    "File uploaded successfully.",
+                    result
                 )
             );
     }
@@ -53,8 +53,8 @@ const uploadMultiple = asyncHandler(
             .json(
                 new ApiResponse(
                     201,
-                    result,
-                    "Files uploaded successfully."
+                    "Files uploaded successfully.",
+                    result
                 )
             );
     }
@@ -83,8 +83,8 @@ const deleteUpload = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    result,
-                    "File deleted successfully."
+                    "File deleted successfully.",
+                    result
                 )
             );
     }
@@ -113,8 +113,8 @@ const deleteMultipleUploads = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    result,
-                    "Files deleted successfully."
+                    "Files deleted successfully.",
+                    result
                 )
             );
     }
@@ -148,8 +148,8 @@ const replaceUpload = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    result,
-                    "File replaced successfully."
+                    "File replaced successfully.",
+                    result
                 )
             );
     }

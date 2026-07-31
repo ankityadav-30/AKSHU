@@ -1,0 +1,280 @@
+/* APP/client/src/styles/admin.css */
+
+/* ====================================
+   Admin Shell Layout
+==================================== */
+
+.admin-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 100vh;
+    background-color: var(--color-bg-surface);
+}
+
+.admin-layout--collapsed {
+    grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+}
+
+/* ====================================
+   Sidebar
+==================================== */
+
+.admin-sidebar {
+    background-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+    padding: var(--space-6) var(--space-4);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transition: width var(--transition-base);
+}
+
+.admin-sidebar__logo {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--space-8);
+    padding-inline: var(--space-2);
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.admin-nav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    color: var(--color-gray-300);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.admin-nav__link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
+}
+
+.admin-nav__link--active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.admin-nav__icon {
+    font-size: var(--font-size-lg);
+    flex-shrink: 0;
+}
+
+/* ====================================
+   Topbar
+==================================== */
+
+.admin-topbar {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: var(--space-6);
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+}
+
+.admin-topbar__user {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.admin-topbar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    background-color: var(--color-gray-200);
+}
+
+/* ====================================
+   Content Area
+==================================== */
+
+.admin-content {
+    padding: var(--space-6);
+    overflow-x: hidden;
+}
+
+.admin-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+/* ====================================
+   Cards
+==================================== */
+
+.admin-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}
+
+.admin-stat-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.admin-stat-card__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.admin-stat-card__value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-secondary);
+}
+
+/* ====================================
+   Table
+==================================== */
+
+.admin-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-white);
+}
+
+.admin-table th {
+    text-align: left;
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-surface);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+    background-color: var(--color-bg-surface);
+}
+
+/* ====================================
+   Status Badges
+==================================== */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: capitalize;
+}
+
+.badge--success {
+    background-color: rgba(22, 163, 74, 0.12);
+    color: var(--color-success);
+}
+
+.badge--warning {
+    background-color: rgba(245, 158, 11, 0.12);
+    color: var(--color-warning);
+}
+
+.badge--danger {
+    background-color: rgba(220, 38, 38, 0.12);
+    color: var(--color-danger);
+}
+
+.badge--neutral {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-600);
+}
+
+/* ====================================
+   Empty / Loading States
+==================================== */
+
+.admin-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16) var(--space-4);
+    text-align: center;
+    color: var(--color-text-secondary);
+}
+
+/* ====================================
+   Responsive
+==================================== */
+
+@media (max-width: 1024px) {
+    .admin-layout {
+        grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+    }
+
+    .admin-sidebar__logo span,
+    .admin-nav__label {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-sidebar {
+        position: fixed;
+        left: -100%;
+        width: var(--sidebar-width);
+        z-index: var(--z-modal);
+        transition: left var(--transition-base);
+    }
+
+    .admin-sidebar--open {
+        left: 0;
+    }
+}

@@ -18,17 +18,11 @@ export const createContact = asyncHandler(async (req, res) => {
     });
 
     return res.status(201).json(
-
         new ApiResponse(
-
             201,
-
-            contact,
-
-            "Contact inquiry submitted successfully."
-
+            "Contact inquiry submitted successfully.",
+            contact
         )
-
     );
 
 });
@@ -43,17 +37,11 @@ export const getContact = asyncHandler(async (req, res) => {
     );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Contact fetched successfully."
-
+            "Contact fetched successfully.",
+            contact
         )
-
     );
 
 });
@@ -67,17 +55,11 @@ export const getUnreadContacts = asyncHandler(async (req, res) => {
         await contactService.getUnreadContacts();
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contacts,
-
-            "Unread contacts fetched successfully."
-
+            "Unread contacts fetched successfully.",
+            contacts
         )
-
     );
 
 });
@@ -94,17 +76,11 @@ export const getRecentContacts = asyncHandler(async (req, res) => {
         await contactService.getRecentContacts(limit);
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contacts,
-
-            "Recent contacts fetched successfully."
-
+            "Recent contacts fetched successfully.",
+            contacts
         )
-
     );
 
 });
@@ -116,27 +92,17 @@ export const assignContact = asyncHandler(async (req, res) => {
 
     const contact =
         await contactService.assignContact(
-
             req.params.id,
-
             req.body.adminId,
-
             req.user._id
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Contact assigned successfully."
-
+            "Contact assigned successfully.",
+            contact
         )
-
     );
 
 });
@@ -148,25 +114,16 @@ export const markAsRead = asyncHandler(async (req, res) => {
 
     const contact =
         await contactService.markAsRead(
-
             req.params.id,
-
             req.user._id
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Marked as read."
-
+            "Marked as read.",
+            contact
         )
-
     );
 
 });
@@ -178,25 +135,16 @@ export const markAsUnread = asyncHandler(async (req, res) => {
 
     const contact =
         await contactService.markAsUnread(
-
             req.params.id,
-
             req.user._id
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Marked as unread."
-
+            "Marked as unread.",
+            contact
         )
-
     );
 
 });
@@ -208,27 +156,17 @@ export const updateStatus = asyncHandler(async (req, res) => {
 
     const contact =
         await contactService.updateStatus(
-
             req.params.id,
-
             req.body.status,
-
             req.user._id
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Status updated successfully."
-
+            "Status updated successfully.",
+            contact
         )
-
     );
 
 });
@@ -240,27 +178,17 @@ export const addNote = asyncHandler(async (req, res) => {
 
     const contact =
         await contactService.addNote(
-
             req.params.id,
-
             req.body.message,
-
             req.user._id
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Note added successfully."
-
+            "Note added successfully.",
+            contact
         )
-
     );
 
 });
@@ -272,25 +200,16 @@ export const markSpam = asyncHandler(async (req, res) => {
 
     const contact =
         await contactService.markSpam(
-
             req.params.id,
-
             req.user._id
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Marked as spam."
-
+            "Marked as spam.",
+            contact
         )
-
     );
 
 });
@@ -302,25 +221,16 @@ export const archiveContact = asyncHandler(async (req, res) => {
 
     const contact =
         await contactService.archiveContact(
-
             req.params.id,
-
             req.user._id
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contact,
-
-            "Contact archived successfully."
-
+            "Contact archived successfully.",
+            contact
         )
-
     );
 
 });
@@ -332,23 +242,15 @@ export const searchContacts = asyncHandler(async (req, res) => {
 
     const contacts =
         await contactService.search(
-
             req.query.keyword
-
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            contacts,
-
-            "Search completed successfully."
-
+            "Search completed successfully.",
+            contacts
         )
-
     );
 
 });
@@ -362,17 +264,11 @@ export const dashboardStats = asyncHandler(async (req, res) => {
         await contactService.getDashboardStats();
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            stats,
-
-            "Dashboard statistics fetched successfully."
-
+            "Dashboard statistics fetched successfully.",
+            stats
         )
-
     );
 
 });
@@ -388,17 +284,11 @@ export const deleteContact = asyncHandler(async (req, res) => {
         );
 
     return res.json(
-
         new ApiResponse(
-
             200,
-
-            result,
-
-            "Contact deleted successfully."
-
+            "Contact deleted successfully.",
+            result
         )
-
     );
 
 });

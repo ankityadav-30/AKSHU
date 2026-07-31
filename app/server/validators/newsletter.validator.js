@@ -36,36 +36,32 @@ const newsletterStatuses = [
  * POST /newsletter/subscribe
  */
 const subscribeSchema = z.object({
-    body: z
-        .object({
-            email: z
-                .string({
-                    required_error:
-                        "Email is required.",
-                })
-                .trim()
-                .email(
-                    "Please provide a valid email address."
-                )
-                .max(
-                    254,
-                    "Email must not exceed 254 characters."
-                )
-                .transform((email) =>
-                    email.toLowerCase()
-                ),
-
-            source: z
-                .enum(newsletterSources, {
-                    errorMap: () => ({
-                        message:
-                            "Invalid newsletter subscription source.",
-                    }),
-                })
-                .optional()
-                .default("WEBSITE"),
+    email: z
+        .string({
+            required_error:
+                "Email is required.",
         })
-        .strict(),
+        .trim()
+        .email(
+            "Please provide a valid email address."
+        )
+        .max(
+            254,
+            "Email must not exceed 254 characters."
+        )
+        .transform((email) =>
+            email.toLowerCase()
+        ),
+
+    source: z
+        .enum(newsletterSources, {
+            errorMap: () => ({
+                message:
+                    "Invalid newsletter subscription source.",
+            }),
+        })
+        .optional()
+        .default("WEBSITE"),
 });
 
 /**
@@ -74,22 +70,20 @@ const subscribeSchema = z.object({
  * GET /newsletter/unsubscribe/:token
  */
 const unsubscribeSchema = z.object({
-    params: z.object({
-        token: z
-            .string({
-                required_error:
-                    "Unsubscribe token is required.",
-            })
-            .trim()
-            .length(
-                64,
-                "Invalid unsubscribe token."
-            )
-            .regex(
-                /^[a-fA-F0-9]{64}$/,
-                "Invalid unsubscribe token."
-            ),
-    }),
+    token: z
+        .string({
+            required_error:
+                "Unsubscribe token is required.",
+        })
+        .trim()
+        .length(
+            64,
+            "Invalid unsubscribe token."
+        )
+        .regex(
+            /^[a-fA-F0-9]{64}$/,
+            "Invalid unsubscribe token."
+        ),
 });
 
 /**
@@ -102,9 +96,7 @@ const unsubscribeSchema = z.object({
  * DELETE /newsletter/:id
  */
 const subscriberIdSchema = z.object({
-    params: z.object({
-        id: objectIdSchema,
-    }),
+    id: objectIdSchema,
 });
 
 /**
@@ -113,51 +105,49 @@ const subscriberIdSchema = z.object({
  * GET /newsletter
  */
 const getSubscribersSchema = z.object({
-    query: z.object({
-        status: z
-            .enum(newsletterStatuses, {
-                errorMap: () => ({
-                    message:
-                        "Invalid newsletter status.",
-                }),
-            })
-            .optional(),
+    status: z
+        .enum(newsletterStatuses, {
+            errorMap: () => ({
+                message:
+                    "Invalid newsletter status.",
+            }),
+        })
+        .optional(),
 
-        source: z
-            .enum(newsletterSources, {
-                errorMap: () => ({
-                    message:
-                        "Invalid newsletter subscription source.",
-                }),
-            })
-            .optional(),
+    source: z
+        .enum(newsletterSources, {
+            errorMap: () => ({
+                message:
+                    "Invalid newsletter subscription source.",
+            }),
+        })
+        .optional(),
 
-        page: z.coerce
-            .number()
-            .int(
-                "Page must be an integer."
-            )
-            .min(
-                1,
-                "Page must be at least 1."
-            )
-            .default(1),
+    page: z.coerce
+        .number()
+        .int(
+            "Page must be an integer."
+        )
+        .min(
+            1,
+            "Page must be at least 1."
+        )
+        .default(1),
 
-        limit: z.coerce
-            .number()
-            .int(
-                "Limit must be an integer."
-            )
-            .min(
-                1,
-                "Limit must be at least 1."
-            )
-            .max(
-                100,
-                "Limit cannot exceed 100."
-            )
-            .default(20),
-    }),
+    limit: z.coerce
+        .number()
+        .int(
+            "Limit must be an integer."
+        )
+        .min(
+            1,
+            "Limit must be at least 1."
+        )
+        .max(
+            100,
+            "Limit cannot exceed 100."
+        )
+        .default(20),
 });
 
 export {

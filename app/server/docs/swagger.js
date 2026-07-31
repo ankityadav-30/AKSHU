@@ -68,11 +68,8 @@ const options = {
     },
 
     apis: [
-
-        "./apps/server/routes/*.js",
-
-        "./apps/server/controllers/*.js",
-
+        "./routes/*.js",
+        "./controllers/*.js",
     ],
 
 };

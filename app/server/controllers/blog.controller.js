@@ -15,8 +15,8 @@ export const createBlog = asyncHandler(async (req, res) => {
     return res.status(201).json(
         new ApiResponse(
             201,
-            blog,
-            "Blog created successfully."
+            "Blog created successfully.",
+            blog
         )
     );
 
@@ -33,8 +33,8 @@ export const getBlogs = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blogs,
-            "Blogs fetched successfully."
+            "Blogs fetched successfully.",
+            blogs
         )
     );
 
@@ -53,8 +53,8 @@ export const getBlog = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blog,
-            "Blog fetched successfully."
+            "Blog fetched successfully.",
+            blog
         )
     );
 
@@ -79,8 +79,8 @@ export const updateBlog = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blog,
-            "Blog updated successfully."
+            "Blog updated successfully.",
+            blog
         )
     );
 
@@ -103,8 +103,8 @@ export const publishBlog = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blog,
-            "Blog published successfully."
+            "Blog published successfully.",
+            blog
         )
     );
 
@@ -127,8 +127,8 @@ export const archiveBlog = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blog,
-            "Blog archived successfully."
+            "Blog archived successfully.",
+            blog
         )
     );
 
@@ -147,8 +147,8 @@ export const deleteBlog = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            result,
-            "Blog deleted successfully."
+            "Blog deleted successfully.",
+            result
         )
     );
 
@@ -168,8 +168,8 @@ export const getFeaturedBlogs = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blogs,
-            "Featured blogs fetched successfully."
+            "Featured blogs fetched successfully.",
+            blogs
         )
     );
 
@@ -189,8 +189,8 @@ export const getLatestBlogs = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blogs,
-            "Latest blogs fetched successfully."
+            "Latest blogs fetched successfully.",
+            blogs
         )
     );
 
@@ -209,8 +209,8 @@ export const searchBlogs = asyncHandler(async (req, res) => {
     return res.json(
         new ApiResponse(
             200,
-            blogs,
-            "Search completed successfully."
+            "Search completed successfully.",
+            blogs
         )
     );
 

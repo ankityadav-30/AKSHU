@@ -1,0 +1,41 @@
+{
+  "name": "akshu-technologies-client",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Frontend for AKSHU Technologies V2",
+  "author": "AKSHU Technologies",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "aos": "^2.3.4",
+    "framer-motion": "^12.23.12",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-hook-form": "^7.62.0",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.8.0",
+    "react-helmet-async": "^2.0.5",
+    "swiper": "^11.2.10",
+    "zod": "^4.0.17",
+    "chart.js": "^4.5.0",
+    "react-chartjs-2": "^5.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.34.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "vite": "^7.1.3"
+  }
+}

@@ -3,13 +3,59 @@ import teamRepository from "../repositories/team.repository.js";
 
 class TeamService {
 
+    normalizeTeamData(data) {
+        const normalized = { ...data };
+
+        if (data.name && (!data.firstName || !data.lastName)) {
+            const parts = data.name.trim().split(/\s+/);
+            normalized.firstName = parts[0];
+            normalized.lastName = parts.slice(1).join(" ") || "";
+            delete normalized.name;
+        }
+
+        if (data.image && !data.profileImage) {
+            normalized.profileImage = data.image;
+            delete normalized.image;
+        }
+
+        if (data.order !== undefined && data.displayOrder === undefined) {
+            normalized.displayOrder = data.order;
+            delete normalized.order;
+        }
+
+        if (
+            data.linkedin ||
+            data.github ||
+            data.portfolio ||
+            data.twitter ||
+            data.instagram
+        ) {
+            normalized.socialLinks = {
+                ...(data.socialLinks || {}),
+                ...(data.linkedin && { linkedin: data.linkedin }),
+                ...(data.github && { github: data.github }),
+                ...(data.portfolio && { portfolio: data.portfolio }),
+                ...(data.twitter && { twitter: data.twitter }),
+                ...(data.instagram && { instagram: data.instagram }),
+            };
+            delete normalized.linkedin;
+            delete normalized.github;
+            delete normalized.portfolio;
+            delete normalized.twitter;
+            delete normalized.instagram;
+        }
+
+        return normalized;
+    }
+
     /**
      * Create Team Member
      */
     async createMember(data, userId) {
+        const normalizedData = this.normalizeTeamData(data);
 
         const existingMember =
-            await teamRepository.findByEmail(data.email);
+            await teamRepository.findByEmail(normalizedData.email);
 
         if (existingMember) {
             throw new ApiError(
@@ -19,7 +65,7 @@ class TeamService {
         }
 
         return teamRepository.create({
-            ...data,
+            ...normalizedData,
             createdBy: userId,
         });
 
@@ -66,6 +112,7 @@ class TeamService {
      * Update Team Member
      */
     async updateMember(id, data, userId) {
+        const normalizedData = this.normalizeTeamData(data);
 
         const member =
             await teamRepository.findById(id);
@@ -78,13 +125,13 @@ class TeamService {
         }
 
         if (
-            data.email &&
-            data.email !== member.email
+            normalizedData.email &&
+            normalizedData.email !== member.email
         ) {
 
             const existing =
                 await teamRepository.findByEmail(
-                    data.email
+                    normalizedData.email
                 );
 
             if (existing) {
@@ -101,7 +148,7 @@ class TeamService {
         return teamRepository.updateById(
             id,
             {
-                ...data,
+                ...normalizedData,
                 updatedBy: userId,
             }
         );

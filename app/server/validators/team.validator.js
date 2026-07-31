@@ -11,17 +11,35 @@ const objectIdSchema = z.string().regex(
 /**
  * Create Member
  */
-export const createMemberSchema = z.object({
+const baseMemberSchema = z.object({
+
+    firstName: z
+        .string()
+        .min(2)
+        .max(100)
+        .optional(),
+
+    lastName: z
+        .string()
+        .max(100)
+        .optional(),
 
     name: z
         .string()
         .min(2)
-        .max(100),
+        .max(100)
+        .optional(),
+
+    email: z
+        .string()
+        .email()
+        .optional(),
 
     designation: z
         .string()
         .min(2)
-        .max(100),
+        .max(100)
+        .optional(),
 
     department: z
         .string()
@@ -34,42 +52,64 @@ export const createMemberSchema = z.object({
         .max(1000)
         .optional(),
 
-    image: z
+    profileImage: z
         .string()
         .optional(),
 
-    email: z
+    image: z
         .string()
-        .email()
         .optional(),
 
     phone: z
         .string()
         .optional(),
 
+    socialLinks: z
+        .object({
+            linkedin: z.string().url().optional().or(z.literal("")),
+            github: z.string().url().optional().or(z.literal("")),
+            portfolio: z.string().url().optional().or(z.literal("")),
+            twitter: z.string().url().optional().or(z.literal("")),
+            instagram: z.string().url().optional().or(z.literal("")),
+        })
+        .optional(),
+
     linkedin: z
         .string()
         .url()
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 
     github: z
         .string()
         .url()
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 
     portfolio: z
         .string()
         .url()
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 
     skills: z
         .array(z.string())
+        .optional(),
+
+    displayOrder: z
+        .number()
+        .int()
+        .nonnegative()
         .optional(),
 
     order: z
         .number()
         .int()
         .nonnegative()
+        .optional(),
+
+    featured: z
+        .boolean()
         .optional(),
 
     isActive: z
@@ -79,10 +119,20 @@ export const createMemberSchema = z.object({
 });
 
 /**
+ * Create Member
+ */
+export const createMemberSchema = baseMemberSchema.refine(
+    (data) => (data.firstName || data.name) && data.email && data.designation,
+    {
+        message: "First name (or name), email, and designation are required.",
+        path: ["firstName"],
+    }
+);
+
+/**
  * Update Member
  */
-export const updateMemberSchema =
-    createMemberSchema.partial();
+export const updateMemberSchema = baseMemberSchema.partial();
 
 /**
  * Params

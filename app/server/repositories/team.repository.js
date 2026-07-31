@@ -8,6 +8,15 @@ class TeamRepository extends BaseRepository {
     }
 
     /**
+     * Find member by email
+     */
+    async findByEmail(email) {
+        return this.model.findOne({
+            email: email.toLowerCase(),
+        });
+    }
+
+    /**
      * Get active members
      */
     async findActive() {
@@ -17,9 +26,27 @@ class TeamRepository extends BaseRepository {
                 isActive: true,
             })
             .sort({
-                order: 1,
+                displayOrder: 1,
                 createdAt: 1,
             });
+
+    }
+
+    /**
+     * Get featured members
+     */
+    async findFeatured(limit = 6) {
+
+        return this.model
+            .find({
+                featured: true,
+                isActive: true,
+            })
+            .sort({
+                displayOrder: 1,
+                createdAt: 1,
+            })
+            .limit(limit);
 
     }
 
@@ -31,7 +58,13 @@ class TeamRepository extends BaseRepository {
         return this.model.find({
             $or: [
                 {
-                    name: {
+                    firstName: {
+                        $regex: keyword,
+                        $options: "i",
+                    },
+                },
+                {
+                    lastName: {
                         $regex: keyword,
                         $options: "i",
                     },

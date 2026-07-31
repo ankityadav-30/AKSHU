@@ -6,9 +6,11 @@ import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 
 import routes from "./routes/index.js";
+import { swaggerUi, swaggerSpec } from "./docs/swagger.js";
 
 import requestLogger from "./middleware/requestLogger.middleware.js";
 import errorMiddleware from "./middleware/error.middleware.js";
+import notFoundMiddleware from "./middleware/not-found.middleware.js";
 
 const app = express();
 
@@ -24,7 +26,7 @@ app.use(helmet());
 
 app.use(
     cors({
-        origin: process.env.CLIENT_URL,
+        origin: process.env.CLIENT_URL || "http://localhost:5173",
         credentials: true,
     })
 );
@@ -83,26 +85,18 @@ app.use(limiter);
 
 app.use(requestLogger);
 
+//   Swagger Docs
+
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 //   API Routes
 
 app.use("/api/v1", routes);
 
 
-  // 404 Handler
+// 404 Handler
 
-app.use((req, res) => {
-
-    return res.status(404).json({
-
-        success: false,
-
-        statusCode: 404,
-
-        message: "Route not found.",
-
-    });
-
-});
+app.use(notFoundMiddleware);
 
 //   Global Error Handler
 

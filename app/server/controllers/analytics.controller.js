@@ -17,8 +17,8 @@ const getAnalyticsOverview = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    analytics,
-                    "Analytics overview retrieved successfully."
+                    "Analytics overview retrieved successfully.",
+                    analytics
                 )
             );
     }
@@ -44,8 +44,8 @@ const getAnalytics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    analytics,
-                    "Analytics retrieved successfully."
+                    "Analytics retrieved successfully.",
+                    analytics
                 )
             );
     }
@@ -71,8 +71,8 @@ const getBlogAnalytics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    analytics,
-                    "Blog analytics retrieved successfully."
+                    "Blog analytics retrieved successfully.",
+                    analytics
                 )
             );
     }
@@ -98,8 +98,8 @@ const getContactAnalytics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    analytics,
-                    "Contact analytics retrieved successfully."
+                    "Contact analytics retrieved successfully.",
+                    analytics
                 )
             );
     }
@@ -125,8 +125,8 @@ const getProjectAnalytics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    analytics,
-                    "Project analytics retrieved successfully."
+                    "Project analytics retrieved successfully.",
+                    analytics
                 )
             );
     }
@@ -152,8 +152,8 @@ const getUserAnalytics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    analytics,
-                    "User analytics retrieved successfully."
+                    "User analytics retrieved successfully.",
+                    analytics
                 )
             );
     }
@@ -179,8 +179,8 @@ const getNewsletterAnalytics = asyncHandler(
             .json(
                 new ApiResponse(
                     200,
-                    analytics,
-                    "Newsletter analytics retrieved successfully."
+                    "Newsletter analytics retrieved successfully.",
+                    analytics
                 )
             );
     }

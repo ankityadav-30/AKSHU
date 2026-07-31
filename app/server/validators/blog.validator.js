@@ -72,7 +72,7 @@ export const createBlogSchema = z.object({
         .min(3)
         .max(200),
 
-    slug: slugSchema,
+    slug: slugSchema.optional(),
 
     shortDescription: z
         .string()

@@ -32,7 +32,7 @@ class AuthService {
     async login(email, password) {
 
         const user =
-            await userRepository.findByEmail(email);
+            await userRepository.findByEmailWithPassword(email);
 
         if (!user) {
             throw new ApiError(
