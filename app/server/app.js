@@ -20,13 +20,19 @@ const app = express();
 
 app.use(helmet());
 
-/* ==========================================
-   CORS
-========================================== */
+const allowedOrigins = (process.env.CLIENT_URL ? process.env.CLIENT_URL.split(",") : [])
+    .concat(["http://localhost:5173", "http://localhost:4173"])
+    .map(url => url.trim());
 
 app.use(
     cors({
-        origin: process.env.CLIENT_URL || "http://localhost:5173",
+        origin: (origin, callback) => {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error(`CORS policy violation for origin: ${origin}`));
+            }
+        },
         credentials: true,
     })
 );

@@ -20,14 +20,17 @@ const NewsletterSection = () => {
         setStatus({ state: "loading", message: "" });
 
         try {
-            const res = await api.post("/newsletter", { email });
+            const res = await api.post("/newsletter/subscribe", { email });
             setStatus({
                 state: "success",
                 message: res.data?.message || "Thank you for subscribing! Check your inbox for updates.",
             });
             setEmail("");
         } catch (err) {
-            const errMsg = err.message || "Failed to subscribe. Please try again later.";
+            const backendErrors = err?.response?.data?.errors;
+            const errMsg = Array.isArray(backendErrors) && backendErrors.length > 0
+                ? backendErrors.map((e) => e.message).join(" ")
+                : err?.response?.data?.message || err?.message || "Failed to subscribe. Please try again later.";
             setStatus({ state: "error", message: errMsg });
         }
     };

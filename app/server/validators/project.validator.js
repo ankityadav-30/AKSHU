@@ -11,56 +11,64 @@ const objectIdSchema = z
     );
 
 /**
- * Slug
+ * Slug Schema
  */
 const slugSchema = z
     .string()
     .trim()
-    .min(3)
+    .min(1)
     .max(150)
-    .regex(
-        /^[a-z0-9-]+$/,
-        "Slug may only contain lowercase letters, numbers and hyphens."
-    );
+    .optional()
+    .or(z.literal(""));
 
 /**
- * Create Project
+ * SEO Schema
+ */
+const seoSchema = z
+    .object({
+        metaTitle: z.string().max(100).optional().or(z.literal("")),
+        metaDescription: z.string().max(300).optional().or(z.literal("")),
+        keywords: z.array(z.string().trim()).optional(),
+    })
+    .optional()
+    .nullable();
+
+/**
+ * Create Project Schema
  */
 export const createProjectSchema = z.object({
-
     title: z
         .string()
         .trim()
-        .min(3)
+        .min(2, "Title must be at least 2 characters.")
         .max(150),
 
-    slug: slugSchema.optional(),
+    slug: slugSchema,
 
     shortDescription: z
         .string()
         .trim()
-        .min(10)
-        .max(300),
+        .min(5, "Short description must be at least 5 characters.")
+        .max(500),
 
     description: z
         .string()
         .trim()
-        .min(30),
+        .min(1, "Description is required."),
 
     thumbnail: z
         .string()
         .url()
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 
     gallery: z
-        .array(z.string().url())
+        .array(z.string())
         .optional(),
 
     technologies: z
-        .array(
-            z.string().trim().min(1)
-        )
-        .min(1),
+        .array(z.string().trim())
+        .optional(),
 
     category: z.enum([
         "WEB",
@@ -73,41 +81,45 @@ export const createProjectSchema = z.object({
     liveDemoUrl: z
         .string()
         .url()
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 
     githubUrl: z
         .string()
         .url()
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 
     featured: z
         .boolean()
         .optional(),
 
+    status: z
+        .enum(["DRAFT", "PUBLISHED", "ARCHIVED"])
+        .optional(),
+
+    seo: seoSchema,
 });
 
 /**
- * Update Project
+ * Update Project Schema
  */
-export const updateProjectSchema =
-    createProjectSchema
-        .partial()
-        .refine(
-            (data) =>
-                Object.keys(data).length > 0,
-            {
-                message:
-                    "At least one field is required.",
-            }
-        );
+export const updateProjectSchema = createProjectSchema
+    .partial()
+    .refine(
+        (data) => Object.keys(data).length > 0,
+        {
+            message: "At least one field is required.",
+        }
+    );
 
 /**
- * Params
+ * Params Schema
  */
 export const projectIdSchema = z.object({
     id: objectIdSchema,
 });
 
 export const projectSlugSchema = z.object({
-    slug: slugSchema,
+    slug: z.string().min(1),
 });

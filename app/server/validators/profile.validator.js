@@ -14,14 +14,15 @@ export const updateProfileSchema = z.object({
     lastName: z
         .string()
         .trim()
-        .min(2, "Last name must be at least 2 characters.")
+        .min(1)
         .max(50)
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 
     avatar: z
         .string()
-        .url("Avatar must be a valid URL.")
-        .optional(),
+        .optional()
+        .or(z.literal("")),
 }).refine(
     (data) => Object.keys(data).length > 0,
     {
@@ -33,25 +34,19 @@ export const updateProfileSchema = z.object({
  * Change Password
  */
 export const changePasswordSchema = z.object({
-
     currentPassword: z
         .string()
         .min(8, "Current password is required."),
 
     newPassword: z
         .string()
-        .min(8, "Password must be at least 8 characters.")
-        .regex(
-            /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/,
-            "Password must contain uppercase, lowercase, number and special character."
-        ),
+        .min(8, "New password must be at least 8 characters."),
 
     confirmPassword: z
         .string()
-
+        .min(8, "Confirm password is required."),
 }).refine(
-    (data) =>
-        data.newPassword === data.confirmPassword,
+    (data) => data.newPassword === data.confirmPassword,
     {
         path: ["confirmPassword"],
         message: "Passwords do not match.",
@@ -62,9 +57,7 @@ export const changePasswordSchema = z.object({
  * Update Avatar
  */
 export const updateAvatarSchema = z.object({
-
     avatar: z
         .string()
-        .url("Avatar must be a valid URL.")
-
+        .min(1, "Avatar URL is required.")
 });

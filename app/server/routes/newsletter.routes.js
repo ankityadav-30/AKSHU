@@ -38,6 +38,12 @@ router.post(
     subscribe
 );
 
+router.post(
+    "/",
+    validate(subscribeSchema),
+    subscribe
+);
+
 router.get(
     "/unsubscribe/:token",
     validate(unsubscribeSchema, "params"),

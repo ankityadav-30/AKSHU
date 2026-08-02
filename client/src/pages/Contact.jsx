@@ -135,9 +135,13 @@ const Contact = () => {
             setSelectedService("");
             setEstimatorBanner(null);
         } catch (err) {
+            const backendErrors = err?.response?.data?.errors;
+            const errorText = Array.isArray(backendErrors) && backendErrors.length > 0
+                ? backendErrors.map((e) => `${e.field}: ${e.message}`).join(" | ")
+                : err?.response?.data?.message || err?.message || "Failed to send message via form. You can try again or message us on WhatsApp.";
             setStatus({
                 type: "error",
-                text: err.message || "Failed to send message via form. You can try again or message us on WhatsApp.",
+                text: errorText,
             });
         } finally {
             setSending(false);

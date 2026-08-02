@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import api from "../../services/api.js";
+import TeamCard from "../team/TeamCard.jsx";
 import "./TeamPreview.css";
 
 const TeamPreview = () => {
@@ -21,7 +21,7 @@ const TeamPreview = () => {
     }, []);
 
     if (!loading && team.length === 0) {
-        return null; // Gracefully omit if no team members exist in database
+        return null;
     }
 
     return (
@@ -46,59 +46,22 @@ const TeamPreview = () => {
                     </div>
                 ) : (
                     <div className="team-grid">
-                        {team.map((member, i) => (
-                            <motion.div
-                                key={member._id || member.name || i}
-                                className="team-member-card"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                                viewport={{ once: true }}
-                            >
-                                <div className="team-member-card__avatar-wrapper">
-                                    {member.avatar || member.image ? (
-                                        <img
-                                            src={member.avatar || member.image}
-                                            alt={member.name}
-                                            className="team-member-card__avatar"
-                                        />
-                                    ) : (
-                                        <div className="team-member-card__placeholder">
-                                            {member.name?.[0] || "A"}
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="team-member-card__info">
-                                    <h3 className="team-member-card__name">{member.name}</h3>
-                                    <span className="team-member-card__role">
-                                        {member.role || member.position || "Engineer"}
-                                    </span>
-                                    {member.bio && (
-                                        <p className="team-member-card__bio">{member.bio}</p>
-                                    )}
-
-                                    {/* Social Links if present */}
-                                    <div className="team-member-card__socials">
-                                        {member.socials?.linkedin && (
-                                            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                                <FaLinkedinIn />
-                                            </a>
-                                        )}
-                                        {member.socials?.github && (
-                                            <a href={member.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                                <FaGithub />
-                                            </a>
-                                        )}
-                                        {member.socials?.twitter && (
-                                            <a href={member.socials.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                                                <FaTwitter />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                        {team.map((member, i) => {
+                            const size = member.cardSize || "medium";
+                            return (
+                                <motion.div
+                                    key={member._id || member.name || i}
+                                    className={`team-grid-item team-grid-item--${size}`}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    viewport={{ once: true }}
+                                    style={{ gridColumn: size === "large" ? "span 2" : "span 1" }}
+                                >
+                                    <TeamCard member={member} />
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 )}
             </div>

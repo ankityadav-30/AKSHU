@@ -10,6 +10,8 @@ import contactRoutes from "./contact.routes.js";
 import newsletterRoutes from "./newsletter.routes.js";
 import dashboardRoutes from "./dashboard.routes.js";
 import analyticsRoutes from "./analytics.routes.js";
+import chatRoutes from "./chat.routes.js";
+import leadRoutes from "./lead.routes.js";
 
 const router = Router();
 
@@ -88,5 +90,12 @@ router.use("/dashboard", dashboardRoutes);
 ============================== */
 
 router.use("/analytics", analyticsRoutes);
+
+/* ==============================
+   AI Chat & Leads
+============================== */
+
+router.use("/chat", chatRoutes);
+router.use("/leads", leadRoutes);
 
 export default router;

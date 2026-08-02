@@ -11,6 +11,7 @@
 html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height);
     color-scheme: dark;
 }
 
@@ -35,6 +36,17 @@ body.body-locked {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+}
+
+.content-wrapper {
+    padding-top: var(--navbar-height);
+    min-height: calc(100vh - var(--navbar-height));
+    display: flex;
+    flex-direction: column;
+}
+
+[id] {
+    scroll-margin-top: calc(var(--navbar-height) + 16px);
 }
 
 /* ====================================

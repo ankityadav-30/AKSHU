@@ -11,78 +11,60 @@ const objectIdSchema = z
     );
 
 /**
- * Slug
+ * Slug Schema
  */
 const slugSchema = z
     .string()
     .trim()
-    .min(3)
-    .max(150)
-    .regex(
-        /^[a-z0-9-]+$/,
-        "Slug can contain only lowercase letters, numbers and hyphens."
-    );
+    .min(1)
+    .max(200)
+    .optional()
+    .or(z.literal(""));
 
 /**
- * Cover Image
+ * Cover Image Schema (Allows empty strings or omitted values)
  */
-const coverImageSchema = z.object({
-
-    url: z
-        .string()
-        .url(),
-
-    publicId: z
-        .string()
-        .min(1)
-
-}).optional();
+const coverImageSchema = z
+    .object({
+        url: z.string().url().optional().or(z.literal("")),
+        publicId: z.string().optional().or(z.literal("")),
+    })
+    .optional()
+    .nullable();
 
 /**
- * SEO
+ * SEO Schema
  */
-const seoSchema = z.object({
-
-    metaTitle: z
-        .string()
-        .max(70)
-        .optional(),
-
-    metaDescription: z
-        .string()
-        .max(160)
-        .optional(),
-
-    keywords: z
-        .array(
-            z.string().trim()
-        )
-        .optional(),
-
-}).optional();
+const seoSchema = z
+    .object({
+        metaTitle: z.string().max(100).optional().or(z.literal("")),
+        metaDescription: z.string().max(300).optional().or(z.literal("")),
+        keywords: z.array(z.string().trim()).optional(),
+    })
+    .optional()
+    .nullable();
 
 /**
- * Create Blog
+ * Create Blog Schema
  */
 export const createBlogSchema = z.object({
-
     title: z
         .string()
         .trim()
-        .min(3)
+        .min(2, "Title must be at least 2 characters.")
         .max(200),
 
-    slug: slugSchema.optional(),
+    slug: slugSchema,
 
     shortDescription: z
         .string()
         .trim()
-        .min(20)
-        .max(300),
+        .min(5, "Short description must be at least 5 characters.")
+        .max(500),
 
     content: z
         .string()
-        .min(50),
+        .min(1, "Content is required."),
 
     coverImage: coverImageSchema,
 
@@ -98,69 +80,60 @@ export const createBlogSchema = z.object({
     ]),
 
     tags: z
-        .array(
-            z.string().trim()
-        )
+        .array(z.string().trim())
         .optional(),
 
     featured: z
         .boolean()
         .optional(),
 
-    seo: seoSchema
+    status: z
+        .enum(["DRAFT", "PUBLISHED", "ARCHIVED"])
+        .optional(),
 
+    seo: seoSchema,
 });
 
 /**
- * Update Blog
+ * Update Blog Schema
  */
-export const updateBlogSchema =
-    createBlogSchema
-        .partial()
-        .refine(
-            (data) =>
-                Object.keys(data).length > 0,
-            {
-                message:
-                    "At least one field is required."
-            }
-        );
+export const updateBlogSchema = createBlogSchema
+    .partial()
+    .refine(
+        (data) => Object.keys(data).length > 0,
+        {
+            message: "At least one field is required."
+        }
+    );
 
 /**
  * Blog Id
  */
 export const blogIdSchema = z.object({
-
     id: objectIdSchema
-
 });
 
 /**
  * Blog Slug
  */
 export const blogSlugSchema = z.object({
-
-    slug: slugSchema
-
+    slug: z.string().min(1)
 });
 
 /**
  * Search Query
  */
 export const searchBlogSchema = z.object({
-
     keyword: z
         .string()
         .trim()
         .min(1)
-
 });
 
 /**
  * Featured / Latest Query
  */
 export const limitQuerySchema = z.object({
-
     limit: z
         .coerce
         .number()
@@ -168,5 +141,4 @@ export const limitQuerySchema = z.object({
         .positive()
         .max(100)
         .optional()
-
 });
