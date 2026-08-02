@@ -1,0 +1,1 @@
+function l(e,a=200){if(!e)return 1;if(typeof e=="object"&&typeof e.readingTime=="number"&&e.readingTime>0)return e.readingTime;const i=typeof e=="string"?e:e.content||e.shortDescription||"";if(!i)return 1;const r=i.replace(/<[^>]*>/g," ").trim().split(/\s+/).filter(Boolean).length,g=Math.ceil(r/a);return Math.max(1,g)}export{l as g};
