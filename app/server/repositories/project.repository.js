@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import BaseRepository from "./base.repository.js";
 import Project from "../models/project.model.js";
 
@@ -8,11 +9,15 @@ class ProjectRepository extends BaseRepository {
     }
 
     /**
-     * Find project by slug
+     * Find project by ObjectId or Slug
      */
-    async findBySlug(slug) {
+    async findBySlug(identifier) {
+        if (mongoose.Types.ObjectId.isValid(identifier)) {
+            const doc = await this.model.findById(identifier);
+            if (doc) return doc;
+        }
         return this.model.findOne({
-            slug: slug.toLowerCase(),
+            slug: identifier.toLowerCase(),
         });
     }
 

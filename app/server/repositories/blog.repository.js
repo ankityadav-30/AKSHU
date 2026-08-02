@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import BaseRepository from "./base.repository.js";
 import Blog from "../models/blog.model.js";
 
@@ -8,14 +9,16 @@ class BlogRepository extends BaseRepository {
     }
 
     /**
-     * Find Blog by Slug
+     * Find Blog by ObjectId or Slug
      */
-    async findBySlug(slug) {
-
+    async findBySlug(identifier) {
+        if (mongoose.Types.ObjectId.isValid(identifier)) {
+            const doc = await Blog.findById(identifier);
+            if (doc) return doc;
+        }
         return Blog.findOne({
-            slug: slug.toLowerCase(),
+            slug: identifier.toLowerCase(),
         });
-
     }
 
     /**
