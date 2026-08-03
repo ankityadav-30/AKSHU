@@ -5,7 +5,7 @@
  * @returns {string} Digits-only phone number.
  */
 export function getWhatsAppNumber() {
-    const rawNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "919876543210";
+    const rawNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "917355650747";
     return rawNumber.replace(/\D/g, "");
 }
 
