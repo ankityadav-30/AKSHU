@@ -1,0 +1,70 @@
+/* APP/client/src/components/projects/ProjectsEstimatorCTA.css */
+
+.projects-estimator-cta {
+    padding: var(--space-20) 0;
+    background: var(--color-bg-body);
+}
+
+.projects-estimator-cta__card {
+    position: relative;
+    padding: var(--space-16) var(--space-8);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.projects-estimator-cta__glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.15) 0%, rgba(99, 102, 241, 0.1) 40%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.projects-estimator-cta__content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.projects-estimator-cta__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-4);
+}
+
+.projects-estimator-cta__desc {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+}
+
+.projects-estimator-cta__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+@media (max-width: 600px) {
+    .projects-estimator-cta__card {
+        padding: var(--space-12) var(--space-4);
+    }
+
+    .projects-estimator-cta__actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .projects-estimator-cta__actions .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,7 @@
+/* APP/client/src/pages/Home.css */
+
+.home-page {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: var(--color-bg-body);
+}

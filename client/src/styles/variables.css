@@ -1,0 +1,112 @@
+:root {
+  /* --- Color Palette --- */
+  /* Dark background layers */
+  --color-bg-body: #060816;       /* Deep Midnight */
+  --color-bg-surface: #0A0D1C;    /* Dark Navy */
+  --color-bg-elevated: #101426;   /* Elevated Navy */
+  --color-bg-muted: #161B33;      /* Muted Dark Card */
+
+  /* Primary accent colors */
+  --color-primary: #6366F1;       /* Indigo */
+  --color-primary-dark: #4F46E5;  /* Dark Indigo */
+  --color-primary-light: #A5B4FC; /* Light Indigo */
+  --color-secondary: #8B5CF6;     /* Violet */
+  --color-accent: #22D3EE;        /* Electric Cyan */
+  --color-accent-blue: #3B82F6;   /* Bright Blue */
+
+  /* Text colors */
+  --color-text-primary: #F8FAFC;   /* Near White */
+  --color-text-secondary: #94A3B8; /* Muted Gray */
+  --color-text-tertiary: #64748B;  /* Subtle Dim Gray */
+  --color-muted: #94A3B8;
+
+  /* Glass & Borders */
+  --color-border: rgba(99, 102, 241, 0.12);
+  --color-border-hover: rgba(99, 102, 241, 0.3);
+  --color-border-glow: rgba(34, 211, 238, 0.4);
+  --color-glass-bg: rgba(10, 13, 28, 0.75);
+  --color-glass-border: rgba(255, 255, 255, 0.07);
+
+  /* Utility colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Status colors */
+  --color-success: #10B981;
+  --color-danger: #EF4444;
+  --color-warning: #F59E0B;
+
+  /* --- Spacing --- */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* --- Border Radius --- */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* --- Shadows & Glows --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-glow-primary: 0 0 30px rgba(99, 102, 241, 0.25);
+  --shadow-glow-cyan: 0 0 30px rgba(34, 211, 238, 0.25);
+
+  /* --- Typography --- */
+  --font-family-base: "Inter", system-ui, -apple-system, sans-serif;
+  --font-family-heading: "Inter", system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-normal: 1.5;
+  --line-height-tight: 1.15;
+  --line-height-relaxed: 1.7;
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Container & Layout --- */
+  --container-max-width: 1280px;
+  --navbar-height: 80px;
+}
+
+@media (max-width: 992px) {
+  :root {
+    --navbar-height: 72px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --navbar-height: 64px;
+  }
+}

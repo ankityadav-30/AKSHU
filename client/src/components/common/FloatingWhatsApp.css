@@ -1,0 +1,89 @@
+/* APP/client/src/components/common/FloatingWhatsApp.css */
+
+.floating-whatsapp {
+    position: fixed;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    right: 24px;
+    z-index: 990;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: #25D366;
+    color: #060816;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+}
+
+.floating-whatsapp:hover,
+.floating-whatsapp:focus-visible {
+    padding-right: var(--space-5);
+    background: #20bd5a;
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.55);
+}
+
+.floating-whatsapp__icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.floating-whatsapp__badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #060816;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-whatsapp__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #25D366;
+    box-shadow: 0 0 6px #25D366;
+}
+
+.floating-whatsapp__label {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    color: #060816;
+    opacity: 0;
+    transition: max-width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.floating-whatsapp:hover .floating-whatsapp__label,
+.floating-whatsapp:focus-visible .floating-whatsapp__label {
+    max-width: 160px;
+    opacity: 1;
+}
+
+.floating-whatsapp__arrow {
+    font-size: 0.9em;
+}
+
+@media (max-width: 576px) {
+    .floating-whatsapp {
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        right: 16px;
+        padding: 10px;
+    }
+
+    .floating-whatsapp__icon {
+        font-size: 1.4rem;
+    }
+}

@@ -1,0 +1,459 @@
+/* APP/client/src/components/team/TeamCard.css */
+
+/* ==========================================
+   PREMIUM TEAM MEMBER CARD SYSTEM
+   Inspired by Vercel, Linear, Stripe & Framer
+========================================== */
+
+.team-profile-card {
+    position: relative;
+    background: linear-gradient(180deg, rgba(16, 21, 40, 0.95), rgba(10, 13, 28, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-2xl, 24px);
+    padding: 28px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+}
+
+/* Subtle top radial lighting glow */
+.team-profile-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 140px;
+    background: radial-gradient(300px circle at top center, rgba(99, 102, 241, 0.07), transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Premium Card Hover Effect */
+.team-profile-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(99, 102, 241, 0.38);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6),
+                0 0 25px -5px rgba(99, 102, 241, 0.15);
+}
+
+/* ==========================================
+   FEATURED MEMBER STYLING
+========================================== */
+
+.team-profile-card--featured {
+    background: linear-gradient(180deg, rgba(22, 29, 56, 0.98), rgba(12, 16, 36, 0.98));
+    border: 1px solid rgba(99, 102, 241, 0.45);
+    box-shadow: 0 12px 35px -12px rgba(79, 70, 229, 0.22),
+                0 0 20px -3px rgba(6, 182, 212, 0.12);
+}
+
+.team-profile-card--featured::before {
+    background: radial-gradient(350px circle at top center, rgba(6, 182, 212, 0.12), transparent 80%);
+}
+
+.team-profile-card--featured:hover {
+    border-color: rgba(6, 182, 212, 0.55);
+    box-shadow: 0 24px 50px -15px rgba(79, 70, 229, 0.32),
+                0 0 30px 0 rgba(6, 182, 212, 0.22);
+}
+
+.team-featured-badge {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: var(--radius-full, 9999px);
+    padding: 3px 10px;
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--color-accent, #38bdf8);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+}
+
+/* ==========================================
+   PROFILE IMAGE & GRADIENT RING
+========================================== */
+
+.team-profile-card__avatar-container {
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.team-profile-card__avatar-ring {
+    width: 120px;
+    height: 120px;
+    padding: 3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.35), rgba(6, 182, 212, 0.35));
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.35s ease,
+                box-shadow 0.35s ease;
+}
+
+.team-profile-card:hover .team-profile-card__avatar-ring {
+    transform: scale(1.04);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(6, 182, 212, 0.6));
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.35),
+                0 10px 30px -8px rgba(0, 0, 0, 0.5);
+}
+
+.team-profile-card__avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.team-profile-card__placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(6, 182, 212, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-profile-card__initials {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    line-height: 1;
+}
+
+/* ==========================================
+   TYPOGRAPHY & CONTENT HIERARCHY
+========================================== */
+
+.team-profile-card__info {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+.team-profile-card__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--color-text-primary, #ffffff);
+    margin-bottom: 4px;
+    line-height: 1.25;
+}
+
+.team-profile-card__role {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-accent, #38bdf8);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+}
+
+.team-profile-card__bio {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary, #94a3b8);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    max-width: 320px;
+}
+
+/* ==========================================
+   SKILL TAG CHIPS
+========================================== */
+
+.team-profile-card__skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.team-skill-chip {
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-full, 9999px);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    white-space: nowrap;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.team-profile-card:hover .team-skill-chip {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.25);
+    color: #a5b4fc;
+}
+
+.team-skill-chip--more {
+    background: rgba(255, 255, 255, 0.025);
+    border-color: rgba(255, 255, 255, 0.07);
+    color: var(--color-text-tertiary, #64748b);
+}
+
+/* ==========================================
+   SOCIAL ICONS
+========================================== */
+
+.team-profile-card__socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.team-profile-card__socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-secondary, #94a3b8);
+    font-size: 0.85rem;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-profile-card__socials a:hover {
+    background: var(--color-primary, #6366f1);
+    border-color: var(--color-primary, #6366f1);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+/* ==========================================
+   ACTION BUTTON / CTA
+========================================== */
+
+.team-profile-card__action {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+}
+
+.team-profile-card__cta {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--color-accent, #38bdf8);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.team-profile-card__cta-arrow {
+    font-size: 0.95rem;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-profile-card:hover .team-profile-card__cta-arrow {
+    transform: translateX(4px);
+}
+
+.team-profile-card:hover .team-profile-card__cta {
+    color: #7dd3fc;
+}
+
+/* ==========================================
+   CARD SIZE VARIATIONS
+========================================== */
+
+/* Small Card */
+.team-profile-card--small {
+    padding: 22px 18px 18px;
+}
+
+.team-profile-card--small .team-profile-card__avatar-ring {
+    width: 100px;
+    height: 100px;
+}
+
+.team-profile-card--small .team-profile-card__initials {
+    font-size: 1.6rem;
+}
+
+.team-profile-card--small .team-profile-card__name {
+    font-size: 1.1rem;
+}
+
+.team-profile-card--small .team-profile-card__role {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+}
+
+.team-profile-card--small .team-profile-card__bio {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+    margin-bottom: 14px;
+}
+
+/* Large Card */
+.team-profile-card--large {
+    padding: 32px 28px;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 28px;
+}
+
+.team-profile-card--large::before {
+    background: radial-gradient(450px circle at left center, rgba(99, 102, 241, 0.08), transparent 80%);
+}
+
+.team-profile-card--large .team-profile-card__avatar-container {
+    margin-top: 0;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.team-profile-card--large .team-profile-card__avatar-ring {
+    width: 130px;
+    height: 130px;
+}
+
+.team-profile-card--large .team-profile-card__info {
+    align-items: flex-start;
+}
+
+.team-profile-card--large .team-profile-card__name {
+    font-size: 1.4rem;
+}
+
+.team-profile-card--large .team-profile-card__bio {
+    font-size: 0.875rem;
+    -webkit-line-clamp: 4;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.team-profile-card--large .team-profile-card__skills {
+    justify-content: flex-start;
+}
+
+.team-profile-card--large .team-profile-card__socials {
+    justify-content: flex-start;
+}
+
+.team-profile-card--large .team-profile-card__action {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 4px;
+    text-align: left;
+}
+
+/* Admin Preview Override */
+.team-profile-card--preview {
+    max-width: 100%;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+========================================== */
+
+@media (max-width: 992px) {
+    .team-profile-card {
+        padding: 24px 20px 20px;
+    }
+
+    .team-profile-card__avatar-ring {
+        width: 110px;
+        height: 110px;
+    }
+
+    .team-profile-card--large .team-profile-card__avatar-ring {
+        width: 115px;
+        height: 115px;
+    }
+}
+
+@media (max-width: 600px) {
+    .team-profile-card {
+        padding: 22px 18px 18px;
+    }
+
+    .team-profile-card__avatar-ring {
+        width: 95px;
+        height: 95px;
+    }
+
+    .team-profile-card__name {
+        font-size: 1.15rem;
+    }
+
+    .team-profile-card__role {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+
+    .team-profile-card__bio {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 2;
+        margin-bottom: 14px;
+    }
+
+    .team-profile-card--large {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 22px 18px 18px;
+        gap: 16px;
+    }
+
+    .team-profile-card--large .team-profile-card__avatar-container {
+        margin-bottom: 12px;
+    }
+
+    .team-profile-card--large .team-profile-card__info {
+        align-items: center;
+    }
+
+    .team-profile-card--large .team-profile-card__skills,
+    .team-profile-card--large .team-profile-card__socials {
+        justify-content: center;
+    }
+
+    .team-profile-card--large .team-profile-card__action {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 14px;
+        margin-top: auto;
+        text-align: center;
+    }
+}

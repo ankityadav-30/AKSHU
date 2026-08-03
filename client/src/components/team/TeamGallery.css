@@ -1,0 +1,77 @@
+/* APP/client/src/components/team/TeamGallery.css */
+
+.team-gallery {
+    padding: var(--space-16) 0 var(--space-20);
+    background: var(--color-bg-body);
+}
+
+.team-members-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    gap: var(--space-5);
+}
+
+.team-grid-item {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+    .team-members-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-5);
+    }
+}
+
+@media (max-width: 868px) {
+    .team-members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 600px) {
+    .team-members-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .team-grid-item--large {
+        grid-column: span 1 !important;
+    }
+}
+
+/* Skeleton & Empty Cards */
+.team-skeleton-card {
+    height: 260px;
+    background: var(--color-bg-surface);
+    border-radius: var(--radius-xl);
+    animation: skeletonPulse 1.5s ease-in-out infinite alternate;
+}
+
+.team-empty-card,
+.team-error-card {
+    padding: var(--space-12) var(--space-6);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.team-empty-card h3,
+.team-error-card h3 {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.team-empty-card p,
+.team-error-card p {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+}
